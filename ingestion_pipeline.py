@@ -8,6 +8,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 # The vector database to store the vector embeddings.
 from dotenv import load_dotenv
+from langchain_huggingface import HuggingFaceEmbeddings
 
 load_dotenv()
 
@@ -66,12 +67,12 @@ def split_documents(documents, chunk_size=800, chunk_overlap=0): #chunk_size her
 
     return chunks
 
-def create_vector_store(chunks, persist_directory="db/chrome_db"): # just saving the db locally
+def create_vector_store(chunks, persist_directory="db/chroma_db"): # just saving the db locally
     """ create and persist ChromaDB vector store"""
 
     print("Creating embeddings and storing in ChromaDB...")
 
-    embedding_model = OpenAIEmbeddings(model="text-embedding-3-small")
+    embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
     # Create ChromaDB vector store
 
