@@ -2,3 +2,4 @@
 *.pdf
 .python-version
 db
+.env
